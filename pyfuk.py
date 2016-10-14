@@ -32,7 +32,7 @@ class BrainInterpreter():
         set debug to 0 or 1 whether you want to display debugging symbols"""
          
         self.brainstack = [0, 0, 0]
-        self.__position = 1
+        self.__position = 0
         self.__loopposition = []
         self.__output = writeFunction
         self.__input = readFunction
