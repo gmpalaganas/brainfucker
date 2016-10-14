@@ -7,7 +7,7 @@ main module, uses pyfuk module for interpretation"""
 import sys, string, getopt
 import pyfuk
 
-version = "1.00"
+version = "1.04"
 
 def main():
     """main(), main brainfucker function
