@@ -17,6 +17,9 @@ def main():
     """
     interpreter = None
     exception_raised = False
+    showHud = 0
+    deb = 0
+    eof = 0
 
     try:
         (selection, arguments) = getopt.getopt(sys.argv[1:],'e:vhdt')
@@ -46,17 +49,14 @@ def main():
             print "want to interpret.\n"
             print "(g) 2010 Garret Raziel, released under GNU/GPL"
             return
-        deb = 0
         if selection.has_key('-d'):
             deb = 1
         if len(arguments) == 0:
             print "No input file!"
             return
-        eof = 0
         if selection.has_key('-e'):
             token = int(selection['-e'])
             eof = token if token in [0,1,2] else 0
-        showHud = 0 # workaround not to get error undef showHud if exception
         if selection.has_key('-t'): showHud = 1
         sourcefile = open(arguments[0])
         interpreter = pyfuk.BrainInterpreter(debug=deb,eof=eof,hud=showHud)
@@ -83,7 +83,7 @@ def main():
         exception_raised = True
         print "Bad arguments, ", chyba
     finally:
-        if exception_raised and interpreter != None and interpreter.__hud:
+        if exception_raised and interpreter != None and showHud:
             print "\n\nTape State on Exit:\n" + interpreter.get_tape_state()
 
 if __name__ == '__main__':
