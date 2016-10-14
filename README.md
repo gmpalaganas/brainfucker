@@ -15,8 +15,9 @@ brainfucker is short for brainfuck interpreter
 
 * Improved Debugging
     
-    > Debug ignores non-reserved characters
-    > Added reserved word `!`: when used interpreter will display current state of tape
+     Debug ignores non-reserved characters
+
+     Added reserved word `!`: when used interpreter will display current state of tape
 
 # Dependencies 
 
