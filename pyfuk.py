@@ -87,8 +87,20 @@ class BrainInterpreter():
                 x = x + 1
             else:
                 x = x + 1
-        #print x
-    
+
+        if self.__hud:
+            final_state_str = "\n\nFinal State of Tape:\n"
+            for i,cell in enumerate(self.brainstack):
+                cell_state_format = "%s"
+
+                if i == self.__position:
+                    cell_state_format = "[" + cell_state_format + "]"
+
+                final_state_str += cell_state_format % cell + " "
+
+            print final_state_str
+
+
     def __interpretOneChar(self, char):
         """__interpretOneChar(char)
         
