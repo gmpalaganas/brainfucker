@@ -97,9 +97,13 @@ class BrainInterpreter():
         if char == '+':
             if self.brainstack[self.__position] < 255:
                 self.brainstack[self.__position] += 1
+            else:
+                self.brainstack[self.__position] = 0
         elif char == '-':
             if self.brainstack[self.__position] > 0:
                 self.brainstack[self.__position] -= 1
+            else:
+                self.brainstack[self.__position] = 255
         elif char == '.':
             try:
                 self.__output(chr(self.brainstack[self.__position]))
