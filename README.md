@@ -13,6 +13,11 @@ brainfucker is short for brainfuck interpreter
 
 * Display of the final state of the tape when `-t` (HUD) flag is on
 
+* Improved Debugging
+    
+    > Debug ignores non-reserved characters
+    > Added reserved word `!`: when used interpreter will display current state of tape
+
 # Dependencies 
 
 * Python>=2.5
