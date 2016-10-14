@@ -23,7 +23,7 @@ class BrainInterpreter():
     is given through constructor argument too, default is raw_input
     If you want to step-by-step debug, set debug=1 in constructor"""
     
-    reservedWords = ['+','-','.',',','>','<','[',']']
+    reservedWords = ['+','-','.',',','>','<','[',']','!']
     
     def __init__(self,writeFunction=sys.stdout.write,readFunction=raw_input,debug=0,eof=0,hud=0):
         """Initialization. Takes several arguments.
@@ -58,11 +58,12 @@ class BrainInterpreter():
         while x < len(code):
             if self.__debug != 0:
                 if x<len(code):
-                    print "Position in code: ",x+1, ", char is: ",
-                    print code[x], ", step is: ", self.debugstep
-                self.debugstep = self.debugstep + 1
-                print self
-                raw_input()
+                    if code[x] in self.reservedWords:
+                        print "Position in code: ",x+1, ", char is: ",
+                        print code[x], ", step is: ", self.debugstep
+                        self.debugstep = self.debugstep + 1
+                        print self
+                        raw_input()
             if code[x] == '[':
                 if self.brainstack[self.__position] != 0:
                     self.__loopposition.append(x)
@@ -136,20 +137,14 @@ class BrainInterpreter():
                 self.brainstack.insert(0,0)
             else:
                 self.__position -= 1
+
+        elif char == '!':
+            print "\n" + self.get_tape_state()
     
     def __str__(self):
-        """printf of BrainIterpreter
-        
-        if you want to print whole stack (e.g. when debugging)"""
 
-        chain = ""        
+        return self.get_tape_state()
 
-        for x in range(len(self.brainstack)):
-            chain += `self.brainstack[x]`+' '
-            if self.__position == x:
-                chain += "<-"
-        chain += "\n"
-        return chain
 
     def get_tape_state(self):
         final_state_str = ""
