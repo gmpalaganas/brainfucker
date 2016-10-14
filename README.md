@@ -27,7 +27,7 @@ Run `python brainfucker.py -h` for help
 
 # Installation and Uninstallation
 
-** ON LINUX ONLY **
+**ON LINUX ONLY**
 
 If you want to install brainfucker run from the root directory of brainfucker
 
