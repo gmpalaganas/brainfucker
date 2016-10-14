@@ -117,8 +117,10 @@ class BrainInterpreter():
                 try:
                     if self.__hud:
                         self.__inputstack = list(self.__input("Input: "))
+                        self.__inputstack.append("\n")
                     else:
                         self.__inputstack = list(self.__input())
+                        self.__inputstack.append("\n")
                     if self.__inputstack != []:
                         self.brainstack[self.__position] = ord(self.__inputstack.pop(0))
                     else:
