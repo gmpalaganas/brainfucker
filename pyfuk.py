@@ -89,18 +89,8 @@ class BrainInterpreter():
                 x = x + 1
 
         if self.__hud:
-            final_state_str = "\n\nFinal State of Tape:\n"
-            for i,cell in enumerate(self.brainstack):
-                cell_state_format = "%s"
-
-                if i == self.__position:
-                    cell_state_format = "[" + cell_state_format + "]"
-
-                final_state_str += cell_state_format % cell + " "
-
-            print final_state_str
-
-
+            print "\n\nFinal State of Tape:\n" + self.get_tape_state()
+            
     def __interpretOneChar(self, char):
         """__interpretOneChar(char)
         
@@ -161,5 +151,18 @@ class BrainInterpreter():
         chain += "\n"
         return chain
 
+    def get_tape_state(self):
+        final_state_str = ""
+
+        for i,cell in enumerate(self.brainstack):
+            cell_state_format = "%s"
+
+            if i == self.__position:
+                cell_state_format = "[" + cell_state_format + "]"
+
+            final_state_str += cell_state_format % cell + " "
+        
+        return final_state_str
+
 if __name__ == "__main__":
-    print "You must run mindfuck.py module for brainfuck interpreting"
+    print "You must run brainfucker.py module for brainfuck interpreting"

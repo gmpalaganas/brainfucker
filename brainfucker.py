@@ -1,20 +1,23 @@
 #! /usr/bin/env python
 
-"""Mindfuck - python brainfuck interpreter
+"""Brainfucker - python brainfuck interpreter
 
 main module, uses pyfuk module for interpretation"""
 
 import sys, string, getopt
 import pyfuk
 
-version = "1.01"
+version = "1.00"
 
 def main():
-    """main(), main mindfuck function
+    """main(), main brainfucker function
     
     tries to interpret code that is given from
     file from argument - only frontend for pyfuk
     """
+    interpreter = None
+    exception_raised = False
+
     try:
         (selection, arguments) = getopt.getopt(sys.argv[1:],'e:vhdt')
         selection = dict(selection)
@@ -62,17 +65,26 @@ def main():
         interpreter.interpret(code)
         if showHud: print "\nEnd of interpretation."
     except IOError, chyba:
+        exception_raised = True
         print "Cannot read file,", chyba
     except EOFError:
+        exception_raised = True
         print "EOF catched."
     except IndexError, chyba:
+        exception_raised = True
         print "Something goes wrong with some list (maybe stack?)", chyba
     except pyfuk.InterpretationError, chyba:
+        exception_raised = True
         print "Cannot interpret,", chyba
     except KeyboardInterrupt:
+        exception_raised = True
         print "End of program."
     except getopt.GetoptError, chyba:
+        exception_raised = True
         print "Bad arguments, ", chyba
+    finally:
+        if exception_raised and interpreter != None and interpreter.__hud:
+            print "\n\nTape State on Exit:\n" + interpreter.get_tape_state()
 
 if __name__ == '__main__':
     try:
