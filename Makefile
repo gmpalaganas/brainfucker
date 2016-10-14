@@ -2,9 +2,9 @@ BIN=/usr/bin
 default:
 	python -c "import pyfuk"
 install:
-	cp mindfuck.py mindfuck
-	chmod +x mindfuck
-	cp mindfuck pyfuk.py pyfuk.pyc $(BIN)
-	rm mindfuck
+	cp brainfucker.py brainfucker 
+	chmod +x brainfucker
+	cp brainfucker pyfuk.py pyfuk.pyc $(BIN)
+	rm brainfucker
 remove:
-	rm $(BIN)/mindfuck $(BIN)/pyfuk.py $(BIN)/pyfuk.pyc
+	rm $(BIN)/brainfucker $(BIN)/pyfuk.py $(BIN)/pyfuk.pyc
